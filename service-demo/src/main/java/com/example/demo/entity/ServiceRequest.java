@@ -27,9 +27,8 @@ public class ServiceRequest {
 	@Id
 	//@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
-	
+	@NotEmpty(message = "message must not be empty")
 	private String message;
-	
 	private boolean StatusOpened;
 	
 	@Column(name="request_date")

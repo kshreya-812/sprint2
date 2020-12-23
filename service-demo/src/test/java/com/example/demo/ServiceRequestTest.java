@@ -34,6 +34,7 @@ import static org.mockito.Mockito.when;
 import static org.mockito.BDDMockito.given;
 import java.util.*;
 import com.example.demo.Repository.ServiceRequestRepository;
+import com.example.demo.Exception.OperationFailedException;
 import com.example.demo.Repository.AccountRepository;
 import com.example.demo.Repository.RechargeRepository;
 import com.example.demo.Service.AccountService;
@@ -238,57 +239,29 @@ public class ServiceRequestTest {
 	}
 	
 	/*@Test
-	void shouldCloseRequest() {
+	public void shouldThrowErrorWhenSaveRequestWithExistingId() {
 		Account account=new Account();
 		ServiceRequest request=new ServiceRequest();
-		ServiceRequest request1=new ServiceRequest();
-		Pack pack=new Pack();
-		Recharge recharge=new Recharge();
-
 		List<ServiceRequest> list=new ArrayList<>();
-		list.add(request);
 		
-		account.setId(12L);
-		account.setRecharge(Arrays.asList(recharge));
+		account.setId(1L);
+		account.setRecharge(null);
 		account.setRegisterd(LocalDate.of(2020, 01, 20));
 		account.setRequest(list);
-		account.setUser(null);
-		account.setCurrentPack(pack);
 		
-		recharge.setAccount(account);
-		recharge.setActive(true);
-		recharge.setAmount(250.0);
-		recharge.setChannels(Arrays.asList("DD","Star"));
-		recharge.setDaysValidity(30);
-		recharge.setId(1L);
-		recharge.setPlanDescription("String");
-		recharge.setPurchasedDate(LocalDate.of(2020, 11, 12));
-		
-		pack.setId(1L);
-		pack.setCost(250.0);
-		pack.setDaysValidity(30);
-		
-		
-		
-		request1.setId(2L);
-		request1.setMessage("ServiceOpened");
-		request1.setAccount(account);
-		request1.setRequestdate(LocalDate.of(2020, 02, 25));
-		request1.setStatusOpened(false);
-		
-		request.setId(1L);
+		request.setId(12L);
 		request.setMessage("ServiceOpened");
 		request.setAccount(account);
 		request.setRequestdate(LocalDate.of(2020, 02, 25));
 		request.setStatusOpened(true);
 		
-		given(requestRepository.findById(request.getId())).willReturn(Optional.of(request));
-		given(rechargeRepository.PurchesedDate(account.getId())).willReturn(recharge.getPurchasedDate());
-		ServiceRequest expectedRequest = requestService.update1(request.getId());
+		  given(requestRepository.findById(request.getId())).willReturn(Optional.of(request));
+		  
+		  assertThrows(OperationFailedException.class, () -> {
+		    	requestService.create(request.getId(), account.getId());
+		    });	
+		  
+		 // verify(requestRepository,never()).s;
+	}*/
 	
-		
-
-		
-	
-}*/
 	}
